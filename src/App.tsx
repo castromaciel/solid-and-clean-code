@@ -1,8 +1,10 @@
+import { Header, Post } from './components'
 
 const App = () => {
   return (
     <div>
-      Clean Code
+      <Header />
+      <Post />
     </div>
   )
 }
