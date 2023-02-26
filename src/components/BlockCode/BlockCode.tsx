@@ -1,19 +1,16 @@
 import {
-  FC, ReactNode, useContext, useEffect, useState
+  FC, ReactNode, useEffect, useState
 } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
-import { PrismLight as SyntaxHighLighter } from 'react-syntax-highlighter'
-import { dracula, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { CopyIcon, PasteIcon } from '../../assets/icons'
-import { ThemeContext } from '../../provider'
+import { InputCode } from '../index'
 import styles from './code.module.scss'
 
 interface ICodeProps {
   children: ReactNode & ReactNode[]
 }
 
-const Code: FC<ICodeProps> = ({ children }) => {
-  const { isDark } = useContext(ThemeContext)
+const BlockCode: FC<ICodeProps> = ({ children }) => {
   const [isCopy, setIsCopy] = useState(false)
 
   useEffect(() => {
@@ -35,15 +32,12 @@ const Code: FC<ICodeProps> = ({ children }) => {
           }
         </button>
       </CopyToClipboard>
-      <SyntaxHighLighter
-        customStyle={{ boxShadow: '1px 10px 76px -27px rgba(0,0,0,0.36)' }}
-        style={isDark ? dracula : oneLight}
-        language="typescript"
-      >
-        { String(children) }
-      </SyntaxHighLighter>
+      <InputCode>
+        {children}
+      </InputCode>
+      
     </div>
   ) 
 }
 
-export default Code
+export default BlockCode

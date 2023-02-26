@@ -1,9 +1,7 @@
-/* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable react/no-children-prop */
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import TechnicalDebt from '../../docs/en/01-VariableNames.md'
-import { Code } from '../index'
+import { BlockCode } from '../index'
 import styles from './post.module.scss'
 
 const Post = () => {
@@ -22,7 +20,7 @@ const Post = () => {
         <div className={styles.post_wrapper}>
           <ReactMarkdown
             components={{
-              code: ({ children }) => <Code children={children} />
+              code: BlockCode
             }}
           >
             {technicalDebt}
