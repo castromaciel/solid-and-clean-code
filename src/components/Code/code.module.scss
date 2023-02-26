@@ -1,0 +1,13 @@
+.code {
+  position: relative;
+  button {
+    cursor: pointer;
+  }
+
+  .copy_icon { 
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 5;
+  }
+}
