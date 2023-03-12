@@ -129,3 +129,50 @@ function sendEmail({
 That helps a lot to make it easier to read, easier to maintain and that we have the relationship of each one of these.
 
 There is also another recommendation, which is that their properties are ordered alphabetically.
+
+
+Other recomendations
+
+  - Simplicity is essential.
+  - The functions must have a reduced size.
+  - One-line functions without causing complexity.
+  - Based on the Clean Code book, less than 20 lines.
+  - Avoid using _else_.
+  - Prioritize the use of the _ternary conditional_ (as far as possible)
+
+**Bad example!!**
+```ts
+const getDeduction = ({
+  isAffiliate = false, isPremium = true, hasChristmasDeduction = false, amountToPay = 100
+}): number => {
+  let result;
+  if (isAffiliate) {
+    result = amountToPay / 0.1;
+  } else {
+    if (isPremium) {
+      result = amountToPay / 0.2;
+    } else {
+      if (hasChristmasDeduction) {
+        result = amountToPay / 0.25;
+      } else {
+        result = amountToPay; 
+      }
+    }
+  }
+  
+  return result;
+}
+```
+
+**Better**
+```ts
+const getDeduction = ({
+  isAffiliate = false, isPremium = true, hasChristmasDeduction = false, amountToPay = 100
+}): number => {
+  if (isAffiliate) return amountToPay / 0.1;
+
+  if (isPremium) return amountToPay / 0.2;
+
+  return hasChristmasDeduction ? 0.25 : amountToPay
+}
+```
