@@ -1,10 +1,12 @@
 import {
   createContext, Dispatch, FC, ReactNode, SetStateAction, useMemo, useState
 } from 'react'
+import { detectColorScheme } from '../helper'
+import { ThemeMode } from '../types'
 
 interface ThemeProviderType {
-  isDark: boolean
-  setIsDark: Dispatch<SetStateAction<boolean>>
+  theme: ThemeMode
+  setTheme: Dispatch<SetStateAction<ThemeMode>>
 }
 
 const initialState: ThemeProviderType = {} as ThemeProviderType
@@ -16,11 +18,11 @@ interface IThemeProvider {
 }
 
 const ThemeProvider: FC<IThemeProvider> = ({ children }) => {
-  const [isDark, setIsDark] = useState<boolean>(true)
+  const [theme, setTheme] = useState<ThemeMode>(detectColorScheme())
 
   const value = useMemo(() => ({
-    isDark, setIsDark
-  }), [isDark])
+    theme, setTheme
+  }), [theme])
 
   return (
     <ThemeContext.Provider value={value}>

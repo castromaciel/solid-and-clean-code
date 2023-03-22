@@ -1,27 +1,30 @@
-import { useContext } from 'react'
 import { LogoIcon, MoonIcon, SunIcon } from '../../assets/icons'
-import { ThemeContext } from '../../provider'
-import styles from './header.module.scss'
+import { isDark } from '../../helper'
+import { useChangeTheme } from '../../hooks'
 
 const Header = () => {
-  const { isDark, setIsDark } = useContext(ThemeContext)
+  const { handleClick, theme } = useChangeTheme()
   return (
-    <header className={styles.header}>
+    <header className="header">
       <div className="container">
 
-        <div className={styles.logo_wrapper}>
-          <div className={styles.logo}>
+        <div className="logo_wrapper">
+          <div className="logo">
             <LogoIcon />
             <span>Clean Code</span>
           </div>
-
-          <button type="button" onClick={() => setIsDark(!isDark)}>
-            {
-              isDark 
-                ? <MoonIcon />
-                : <SunIcon />
-            }
-          </button>
+          <div className="options">
+            <button type="button">
+              En
+            </button>
+            <button type="button" onClick={handleClick}>
+              {
+                isDark(theme)
+                  ? <MoonIcon />
+                  : <SunIcon />
+              }
+            </button>
+          </div>
         </div>
       
       </div>
