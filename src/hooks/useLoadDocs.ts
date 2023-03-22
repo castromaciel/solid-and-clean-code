@@ -11,7 +11,7 @@ const documents = [
   Functions
 ]
 
-const useLoadDocs = () => {
+export const useLoadDocs = () => {
   const [docs, setDocs] = useState<string[]>([])
 
   const handleFetch = async (file: string) => {
@@ -28,5 +28,3 @@ const useLoadDocs = () => {
     docs
   }
 }
-
-export default useLoadDocs

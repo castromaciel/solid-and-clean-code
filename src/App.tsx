@@ -1,5 +1,5 @@
 import { Header, Post } from './components'
-import useLoadDocs from './hooks/useLoadDocs'
+import { useLoadDocs } from './hooks'
 
 const App = () => {
   const { docs } = useLoadDocs()
