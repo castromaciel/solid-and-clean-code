@@ -1,6 +1,7 @@
 import { FC, ReactNode, useContext } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { dracula, duotoneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { dracula, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { isDark } from '../../helper'
 import { ThemeContext } from '../../provider'
 
 interface InputCodeProps {
@@ -8,12 +9,11 @@ interface InputCodeProps {
 }
 
 const InputCode: FC<InputCodeProps> = ({ children }) => {
-  const { isDark } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
 
   return (
     <SyntaxHighlighter
-      customStyle={{ boxShadow: '1px 10px 76px -27px rgba(0,0,0,0.36)' }}
-      style={isDark ? dracula : duotoneLight}
+      style={isDark(theme) ? dracula : oneLight}
       language="typescript"
     >
       { String(children) }

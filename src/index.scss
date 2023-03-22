@@ -1,28 +1,37 @@
 :root {
-  --color-dark: #0e1117;
-  --color-dark-grey: #161b22;
+  --text-color: #24292f;
+  --bg-color: #ffffff;
+  --link-color: #275a90;
+  --button-color: #36373a;
+  --title-color: #161b22;
+  --muted-color: #a8b0b7;
+  --bg-article-color: #e5e5e5;
 
-  --color-grey: #a8b0b7;
-  --color-light-grey: #c8d1d9;
 
-  --color-white: #ffffff;
-  --text-color: #e5e5e5;
-
-
+  color: var(--text-color);
   line-height: 24px;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: var(--color-white);
-
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  scroll-behavior: smooth;
+}
+
+[data-theme="dark"] {
+  --text-color: #c8d1d9;
+  --bg-color:#0e1117;
+  --bg-article-color: #24292f;
+  --link-color:#7352ff;
+  --title-color: #ffffff;
+  --muted-color: #a8b0b7;
+  --color-button-hover: #e5e5e5;
 }
 
 @import './sass/global';
+@import './sass/reset';
+@import './components/sass/header.scss';
 
 body {
   margin: 0;
@@ -30,7 +39,7 @@ body {
   font-size: 16px;
 
 
-  background-color: var(--color-dark);
+  background-color: var(--bg-color);
   min-width: 320px;
   min-height: 100vh;
 }
@@ -48,6 +57,36 @@ img {
 blockquote {
   border-left: 2.16px solid #dfdfdf;
   padding: 4.5px 18px 4.5px 15.84px;
-  background-color: var(--color-dark-grey);
+  background-color: var(--color-cuaternity);
   border-radius: 2px;
+}
+
+@media(prefers-color-scheme: dark) {
+	body {
+    color: var(--text-color);
+    background: var(--bg-color);
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--title-color);
+  }
+  
+  a {
+    color: var(--link-color);
+  }
+
+  article {
+    background-color: var(--bg-color);
+  }
+
+  button {
+    all: unset;
+    background: transparent !important;
+    cursor: pointer;
+  
+    &:hover {
+      cursor: pointer;
+      color: var(--color-button-hover)
+    }
+  }
 }
